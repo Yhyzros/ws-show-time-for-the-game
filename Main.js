@@ -3,8 +3,10 @@ const crypto = require('crypto');
 const fs = require('fs');
 const uuid = () =>([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>(c ^ (crypto.randomBytes(1)[0] & (15 >> (c / 4)))).toString(16));
 const ip = '127.0.0.1';
+let D = Date();
+let time = D.substr(16,8);
 const wss = new WebSocket.Server({ port: 17439 });
-console.log('Server is running at '+ ip + ':17439.');
+console.log('['+ time +']Server is running at '+ ip + ':17439.');
 console.log('Author by Yhyzros.');
 wss.on('connection', (ws) =>{
     ws.send(JSON.stringify({
